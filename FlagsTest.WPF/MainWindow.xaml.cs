@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlagsTest.LIBRARY.APIHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace FlagsTest.WPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var spoonacularAPI = new SpoonacularAPI();
+
+            var result = await spoonacularAPI.Recipes("burger", 20);
+
+            MessageBox.Show(result.ToString());
         }
     }
 }

@@ -25,12 +25,10 @@ namespace FlagsTest.WPF.Views
         {
             InitializeComponent();
             DataContext = new SpoonacularViewModel();
+            
         }
 
-
-        private void lstRecipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
+   
     }
 }

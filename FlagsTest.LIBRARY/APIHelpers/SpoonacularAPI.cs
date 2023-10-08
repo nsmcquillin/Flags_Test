@@ -1,4 +1,6 @@
 ﻿using FlagsTest.LIBRARY.Models.Spoonacular;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,15 @@ namespace FlagsTest.LIBRARY.APIHelpers
 
             RestResponse response = await client.ExecuteAsync(request);
 
-            return null;
-            //return JsonConvert.DeserializeObject<List<Recipe>>(response.Content);
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+            List<Recipe> recipeList = JsonConvert.DeserializeObject<List<Recipe>>(jsonResponse["results"].ToString());
+
+
+            return recipeList;
 
 
         }
+
+        
     }
 }

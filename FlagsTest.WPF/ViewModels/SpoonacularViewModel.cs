@@ -14,7 +14,7 @@ namespace FlagsTest.WPF.ViewModels
     {
         public SpoonacularViewModel()
         {
-            _searchCriteria = "aaa";
+            _title = "SPOONACULAR";
             SearchRecipesCommand = new SearchRecipesCommand(this);
         }              
 
@@ -47,6 +47,7 @@ namespace FlagsTest.WPF.ViewModels
             set
             {
                 _recipeList = value;
+                NotifyPropertyChanged();
             }
         }
 

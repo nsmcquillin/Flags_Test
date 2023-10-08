@@ -67,6 +67,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StyleResources\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -99,6 +103,28 @@
       <Project>{89fd0d8c-f6a2-4481-8fbd-91015fcab14c}</Project>
       <Name>FlagsTest.LIBRARY</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ImageResources\bg_color.png" />
+    <Resource Include="ImageResources\bg_search.png" />
+    <Resource Include="ImageResources\card_panel.png" />
+    <Resource Include="ImageResources\Clock_96px.png" />
+    <Resource Include="ImageResources\fav_icon.png" />
+    <Resource Include="ImageResources\FLAGS_logo.png" />
+    <Resource Include="ImageResources\headings.png" />
+    <Resource Include="ImageResources\line_break.png" />
+    <Resource Include="ImageResources\main_footer.png" />
+    <Resource Include="ImageResources\main_header.png" />
+    <Resource Include="ImageResources\main_title.png" />
+    <Resource Include="ImageResources\search_field.png" />
+    <Resource Include="ImageResources\search_Icon.png" />
+    <Resource Include="ImageResources\search_text.png" />
+    <Resource Include="ImageResources\sidebar.png" />
+    <Resource Include="ImageResources\Time_Footer.png" />
+    <Resource Include="ImageResources\title_bg.png" />
+    <Resource Include="ImageResources\_Color_Palette.png" />
+    <Resource Include="ImageResources\_Concept.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

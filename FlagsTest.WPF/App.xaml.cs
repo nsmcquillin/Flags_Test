@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlagsTest.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,11 @@ namespace FlagsTest.WPF
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindow();
+            MainWindow.DataContext = new MainWindowViewModel();
+            MainWindow.Show();
+        }
     }
 }

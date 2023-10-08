@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlagsTest.WPF"
+        xmlns:views="clr-namespace:FlagsTest.WPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -26,42 +27,10 @@
 
         <!--body-->
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <ContentControl Name="ccCurrentView" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentContent}">
+                
 
-            <!--left sidebar-->
-            <Grid Grid.Column="0"  Background="#FF585858">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="TITLE" Background="#FF4F7C7E" Foreground="White" FontSize="30"/>
-
-                <Rectangle Grid.Row="1" Height="10" Fill="#FF65A0A6" />
-
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#FF5F8E92">
-                    <TextBox Name="txtSearch" Style="{StaticResource TextBoxSearch}"/>
-                    <Button Style="{StaticResource ButtonSettings}" Margin="5"/>
-                </StackPanel>
-
-                <ListBox Grid.Row="3" Name="lstHeadings" Background="#FF585858">
-
-                </ListBox>
-            </Grid>
-
-
-            <!--main content-->
-            <Grid Grid.Column="1" Background="#FFF6F6F6">
-                <ContentControl Name="ccMainContent" Style="{StaticResource ContentControlMain}">
-
-                </ContentControl>
-            </Grid>
-
+            </ContentControl>
         </Grid>
 
         <!--footer-->

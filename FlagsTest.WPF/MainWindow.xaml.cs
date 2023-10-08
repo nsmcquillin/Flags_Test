@@ -26,11 +26,17 @@ namespace FlagsTest.WPF
             InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private UserControl _currentView;
+        public UserControl CurrentView
         {
-            var spoonacularAPI = new SpoonacularAPI();
+            get { return _currentView; }
+            set { _currentView = value; }
+        }
 
-            var result = await spoonacularAPI.Recipes("burger", 20);
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {           
+            var result = await SpoonacularAPI.GetRecipes("burger", 20);
 
             MessageBox.Show(result.ToString());
         }

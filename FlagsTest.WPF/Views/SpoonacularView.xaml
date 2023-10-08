@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="FlagsTest.WPF.Views.SpoonacularView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlagsTest.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--left sidebar-->
+        <Grid Grid.Column="0"  Background="#FF585858">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="TITLE" Background="#FF4F7C7E" Foreground="White" FontSize="30"/>
+
+            <Rectangle Grid.Row="1" Height="10" Fill="#FF65A0A6" />
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#FF5F8E92">
+                <TextBox Name="txtSearch" Style="{StaticResource TextBoxSearch}" Text="{Binding SearchCriteria}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchRecipesCommand}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Style="{StaticResource ButtonSettings}" Margin="5"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="3" Name="lstRecipes" ItemsSource="{Binding RecipeList}" Background="#FF585858" SelectionChanged="lstRecipes_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Name}"/>
+                        </Grid>
+                    </DataTemplate>
+                    
+                </ListBox.ItemTemplate>
+
+                
+            </ListBox>
+        </Grid>
+
+
+        <!--main content-->
+        <Grid Grid.Column="1" Background="#FFF6F6F6">
+            <ContentControl Name="ccMainContent" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentView}">
+
+            </ContentControl>
+        </Grid>
+
+        </Grid>
+</UserControl>

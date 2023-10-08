@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace FlagsTest.LIBRARY.APIHelpers
 {
-    public class SpoonacularAPI
+    public static class SpoonacularAPI
     {
 
-        private string _apiKey = "ogJj2OSqZXTqL5lYGqmeXTNgqbTdRxGR";
+        private static string _apiKey = "ogJj2OSqZXTqL5lYGqmeXTNgqbTdRxGR";
 
-        public async Task<List<Recipe>> Recipes(string searchCriteria, int numberOfRecords)
+        public static async Task<List<Recipe>> GetRecipes(string searchCriteria, int numberOfRecords)
         {
             var url = "https://api.apilayer.com/spoonacular/recipes/complexSearch";
 

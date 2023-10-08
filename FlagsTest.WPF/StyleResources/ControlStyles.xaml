@@ -290,7 +290,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" />
+                            <ScrollViewer Grid.Column="0" x:Name="PART_ContentHost" />
                             <Image Grid.Column="1" Source="pack://application:,,,/ImageResources/search_Icon.png" Width="20" Height="20" Margin="5" VerticalAlignment="Stretch" />
 
                         </Grid>

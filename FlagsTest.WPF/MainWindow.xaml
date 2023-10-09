@@ -27,6 +27,12 @@
 
         <!--body-->
         <Grid Grid.Row="1">
+            <!--<Grid Name="gridBusyIndicator" Style="{StaticResource GridMainWindowPopUp}" Panel.ZIndex="99">
+
+                <ContentControl Name="cctBusyIndicator" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+            </Grid>-->
+            
             <ContentControl Name="ccCurrentView" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentContent}">
                 
 
@@ -36,11 +42,15 @@
         <!--footer-->
         <Grid Grid.Row="2" MinHeight="50">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Image Source="/ImageResources/Clock_96px.png" />
+                <TextBlock  Style="{StaticResource TextBlockH3}" Foreground="Black" Text="{Binding CurrentDateTime, StringFormat='{}{0:dd/MM/yyyy h:mm tt}'}"/>
 
+            </StackPanel>
 
         </Grid>
 

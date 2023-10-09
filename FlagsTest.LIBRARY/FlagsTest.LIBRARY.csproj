@@ -76,8 +76,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIHelpers\MoviesAPI.cs" />
     <Compile Include="APIHelpers\SpoonacularAPI.cs" />
+    <Compile Include="APIHelpers\TheRundownAPI.cs" />
+    <Compile Include="Models\Movies\Actor.cs" />
+    <Compile Include="Models\Movies\Movie.cs" />
+    <Compile Include="Models\Movies\MovieImage.cs" />
+    <Compile Include="Models\Movies\MoviePlot.cs" />
+    <Compile Include="Models\Movies\MoviePlotText.cs" />
+    <Compile Include="Models\Movies\MovieReleaseDate.cs" />
+    <Compile Include="Models\Movies\MovieRuntime.cs" />
+    <Compile Include="Models\Movies\MovieTitle.cs" />
+    <Compile Include="Models\Spoonacular\Ingredient.cs" />
+    <Compile Include="Models\Spoonacular\RecipeMethod.cs" />
     <Compile Include="Models\Spoonacular\Recipe.cs" />
+    <Compile Include="Models\Spoonacular\RecipeMethodStep.cs" />
+    <Compile Include="Models\TheRundown\Sport.cs" />
+    <Compile Include="Models\TheRundown\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

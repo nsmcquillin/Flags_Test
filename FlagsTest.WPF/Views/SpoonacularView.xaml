@@ -33,7 +33,7 @@
                 <Button Style="{StaticResource ButtonSettings}" Margin="5"/>
             </StackPanel>
 
-            <ListBox Grid.Row="3" Name="lstRecipes" ItemsSource="{Binding RecipeList}" Background="#FF585858" >
+            <ListBox Grid.Row="3" Name="lstRecipes" ItemsSource="{Binding RecipeList}" Background="#FF585858" SelectedItem="{Binding SelectedRecipe}" SelectionChanged="lstRecipes_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -46,9 +46,9 @@
                             <TextBlock Grid.Column="1" Text="{Binding Title}" Style="{StaticResource TextBlockH3}" Width="300" TextWrapping="WrapWithOverflow"/>
                             
                         </Grid>
-                    </DataTemplate>
-                    
+                    </DataTemplate>                    
                 </ListBox.ItemTemplate>
+             
 
                 
             </ListBox>
@@ -56,11 +56,46 @@
 
 
         <!--main content-->
-        <Grid Grid.Column="1" Background="#FFF6F6F6">
-            <ContentControl Name="ccMainContent" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentView}">
+        <Grid Grid.Column="1" Background="#FFF6F6F6" >
+            <TabControl>
+                <TabControl.Items>
+                    <TabItem Header="Ingredients" FontSize="30" >
+                        <TabItem.Content>
+                            <Grid>
+                                <ListBox ItemsSource="{Binding ElementName=lstRecipes, Path=SelectedItem.Ingredients}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  Text="{Binding Name}" Style="{StaticResource TextBlockH3}" Foreground="Black" Width="300" TextWrapping="WrapWithOverflow"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
 
-            </ContentControl>
+                            </Grid>
+                            
+                        </TabItem.Content>
+                    </TabItem>
+                    <TabItem Header="Method" FontSize="30">
+                        <Grid>
+
+                            <ListBox ItemsSource="{Binding ElementName=lstRecipes, Path=SelectedItem.Method.Steps}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  Text="{Binding Step}" Style="{StaticResource TextBlockH3}" Foreground="Black" Width="300" TextWrapping="WrapWithOverflow"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                            </ListBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl.Items>
+            </TabControl>
+            
         </Grid>
 
-        </Grid>
+    </Grid>
 </UserControl>

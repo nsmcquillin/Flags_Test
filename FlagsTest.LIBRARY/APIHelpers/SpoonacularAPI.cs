@@ -36,6 +36,52 @@ namespace FlagsTest.LIBRARY.APIHelpers
 
         }
 
-        
+        public static async Task<Recipe> GetRecipeIngredients(Recipe recipe)
+        {
+            string url = "https://api.apilayer.com/spoonacular/recipes/" + recipe.Id + "/information";
+
+            var client = new RestClient(url);
+            var request = new RestRequest(url, Method.Get);
+            request.AddHeader("apikey", _apiKey);
+
+            //request.Parameters.AddParameter(Parameter.CreateParameter("id", searchCriteria, ParameterType.QueryString));
+
+            RestResponse response = await client.ExecuteAsync(request);
+
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+            recipe.Ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(jsonResponse["extendedIngredients"].ToString());
+            recipe.Method = JsonConvert.DeserializeObject<RecipeMethod>(jsonResponse["analyzedInstructions"].ToString());
+
+       
+         
+
+            return recipe;
+
+        }
+
+        public static async Task<List<Ingredient>> GetRecipeMethod(int recipeId)
+        {
+            string url = "https://api.apilayer.com/spoonacular/recipes/" + recipeId + "/information";
+
+            var client = new RestClient(url);
+            var request = new RestRequest(url, Method.Get);
+            request.AddHeader("apikey", _apiKey);
+
+            //request.Parameters.AddParameter(Parameter.CreateParameter("id", searchCriteria, ParameterType.QueryString));
+
+            RestResponse response = await client.ExecuteAsync(request);
+
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+            List<Ingredient> ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(jsonResponse["extendedIngredients"].ToString());
+
+            foreach (var ing in ingredients)
+            {
+                ing.Image = "https://spoonacular.com/recipeImages/" + ing.Image;
+            }
+
+            return ingredients;
+
+
+        }
     }
 }

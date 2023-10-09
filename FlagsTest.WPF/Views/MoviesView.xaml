@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="FlagsTest.WPF.Views.MoviesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="b2v" />        
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--left sidebar-->
+        <Grid Grid.Column="0"  Background="#FF585858">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Title}" Background="#FF4F7C7E" Foreground="White" FontSize="30"/>
+
+            <Rectangle Grid.Row="1" Height="10" Fill="#FF65A0A6" />
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#FF5F8E92">
+                <TextBox Name="txtSearch" Style="{StaticResource TextBoxSearch}"
+                         Text="{Binding SearchCriteria, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchMoviesCommand}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Style="{StaticResource ButtonSettings}" Margin="5"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="3" Name="lstMovies" ItemsSource="{Binding MovieList}" Background="#FF585858" SelectedItem="{Binding SelectedMovie}" SelectionChanged="lstMovies_SelectionChanged" Visibility="{Binding HasItems, Converter={StaticResource b2v}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image MaxHeight="100" Grid.Column="0" Source="{Binding PrimaryImage.Url}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding TitleText.Text}" Style="{StaticResource TextBlockH3}" Width="300" TextWrapping="WrapWithOverflow"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+            <TextBlock Grid.Row="3" Style="{StaticResource TextBlockH2}" 
+                       Text="Please enter full or part of movie title and press enter" Visibility="{Binding HasNoItems, Converter={StaticResource b2v}}"
+                       MaxWidth="300" TextWrapping="Wrap" TextAlignment="Center"/>
+
+        </Grid>
+
+
+        <!--main content/movies-->
+        <Grid Grid.Column="1" Background="#FFF6F6F6" DataContext="{Binding ElementName=lstMovies, Path=SelectedItem}"  >
+            <Border Name="bdrSelectedMovie" Padding="20" Background="#FFB6BBC1" Margin="20" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<TextBlock Grid.Row="0" Text="Movie Details" Style="{StaticResource TextBlockH1}" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left"/>-->
+
+                    <Image MaxHeight="500"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Source="{Binding PrimaryImage.Url}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TitleText.Text}" Style="{StaticResource TextBlockH1}" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <TextBlock Text="Released : " Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ReleaseDate.Day}" Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock Text="/" Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ReleaseDate.Month }" Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock Text="/" Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ReleaseDate.Year }" Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"/>
+                    </StackPanel>
+
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" 
+                               Text="{Binding Plot.PlotText.PlainText, StringFormat=Plot : {0}}"
+                               Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"
+                               VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" 
+                               Text="{Binding Runtime.Minutes, StringFormat=Runtime : {0}}"
+                               Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"
+                               VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+                    
+
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Button Style="{StaticResource ButtonGeneric}" Content="CAST" Command="{Binding ShowCastDetailsCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+
+        </Grid>
+
+        <!--main content/cast-->
+        <Grid Grid.Column="1" Background="#FFF6F6F6" DataContext="{Binding ElementName=lstMovies, Path=SelectedItem}"  Visibility="Collapsed" >
+            <Border Name="bdrSelectedMovieCast" Padding="20" Background="#FFB6BBC1" Margin="20" CornerRadius="10" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Movie Details" Style="{StaticResource TextBlockH1}" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left"/>                    
+
+
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Button Style="{StaticResource ButtonGeneric}" Content="CLOSE" Command="{Binding CloseCastDetailsCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>

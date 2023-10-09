@@ -1,4 +1,5 @@
-﻿using FlagsTest.WPF.ViewModels;
+﻿using FlagsTest.LIBRARY.APIHelpers;
+using FlagsTest.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,13 @@ namespace FlagsTest.WPF.Views
             
         }
 
+        private async void lstRecipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((SpoonacularViewModel)DataContext).SelectedRecipe = await SpoonacularAPI.GetRecipeIngredients(((SpoonacularViewModel)DataContext).SelectedRecipe);
+
+
+        }
+
        
-   
     }
 }

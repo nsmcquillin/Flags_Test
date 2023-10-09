@@ -1,4 +1,5 @@
-﻿using FlagsTest.LIBRARY.Models.Spoonacular;
+﻿using FlagsTest.LIBRARY.APIHelpers;
+using FlagsTest.LIBRARY.Models.Spoonacular;
 using FlagsTest.WPF.Commands.Spoonacular;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,9 @@ namespace FlagsTest.WPF.ViewModels
     {
         public SpoonacularViewModel()
         {
-            _title = "SPOONACULAR";
+            _title = "SPOONACULAR - RECIPES";
             SearchRecipesCommand = new SearchRecipesCommand(this);
+            GetRecipeCommand = new GetRecipeCommand(this);
         }              
 
         private string _searchCriteria;
@@ -51,9 +53,33 @@ namespace FlagsTest.WPF.ViewModels
             }
         }
 
+        private Recipe _selectedRecipe;
+        public Recipe SelectedRecipe
+        {
+            get { return _selectedRecipe; }
+            set
+            {
+                _selectedRecipe = value;
+                NotifyPropertyChanged();
+                
+                
+            }
+        }
+
+        private int _selectedRecipeId;
+        public int SelectedRecipeId
+        {
+            get { return _selectedRecipeId; }
+            set
+            {
+                _selectedRecipeId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public ICommand SearchRecipesCommand {  get; }
 
-        public ICommand SidebarListSelectedItemChanged { get; }
+        public ICommand GetRecipeCommand { get; }
 
 
     }

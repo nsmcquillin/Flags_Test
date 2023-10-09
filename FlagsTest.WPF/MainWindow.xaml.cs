@@ -34,11 +34,19 @@ namespace FlagsTest.WPF
         }
 
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {           
-            var result = await SpoonacularAPI.GetRecipes("burger", 20);
+        //public void  Application_Busy(string busyMessage)
+        //{
+        //    gridBusyIndicator.Visibility = Visibility.Visible;
+        //}
 
-            MessageBox.Show(result.ToString());
-        }
+        //public void Application_NotBusy(string busyMessage)
+        //{
+        //    gridBusyIndicator.Visibility = Visibility.Collapsed;
+        //}
+
+
+
+
+
     }
 }

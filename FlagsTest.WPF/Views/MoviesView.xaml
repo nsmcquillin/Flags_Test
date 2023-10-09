@@ -66,7 +66,7 @@
 
         <!--main content/movies-->
         <Grid Grid.Column="1" Background="#FFF6F6F6" DataContext="{Binding ElementName=lstMovies, Path=SelectedItem}"  >
-            <Border Name="bdrSelectedMovie" Padding="20" Background="#FFB6BBC1" Margin="20" CornerRadius="10">
+            <Border Name="bdrSelectedMovie" Padding="20" Background="#FFB6BBC1" Margin="20" CornerRadius="10" Visibility="Collapsed" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

@@ -48,7 +48,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image MaxHeight="100" Grid.Column="0" Source="{Binding PrimaryImage.Url}"/>
+                            <Image Width="100" MaxWidth="100" Grid.Column="0" Source="{Binding PrimaryImage.Url}"/>
                             <TextBlock Grid.Column="1" Text="{Binding TitleText.Text}" Style="{StaticResource TextBlockH3}" Width="300" TextWrapping="WrapWithOverflow"/>
 
                         </Grid>
@@ -105,7 +105,10 @@
                                Text="{Binding Runtime.Minutes, StringFormat=Runtime : {0}}"
                                Style="{StaticResource TextBlockH3}" Foreground="Black" FontWeight="Bold"
                                VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
-                    
+
+
+                    <!--<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Id}"/>-->
+
 
                     <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
                         <Button Style="{StaticResource ButtonGeneric}" Content="CAST" Command="{Binding ShowCastDetailsCommand}"/>

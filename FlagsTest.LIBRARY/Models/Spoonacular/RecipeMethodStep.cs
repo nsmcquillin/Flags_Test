@@ -12,7 +12,7 @@ namespace FlagsTest.LIBRARY.Models.Spoonacular
         public int Number { get; set; }
         public string Step { get; set; }
 
-        public object Ingredients { get; set; }
-        public object Equipment { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
+        public List<RecipeEquipment> Equipment { get; set; }
     }
 }

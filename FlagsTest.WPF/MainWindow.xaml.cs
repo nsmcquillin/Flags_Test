@@ -1,4 +1,6 @@
 ﻿using FlagsTest.LIBRARY.APIHelpers;
+using FlagsTest.WPF.CustomControls;
+using FlagsTest.WPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace FlagsTest.WPF
 {
@@ -33,19 +36,7 @@ namespace FlagsTest.WPF
             set { _currentView = value; }
         }
 
-
-        //public void  Application_Busy(string busyMessage)
-        //{
-        //    gridBusyIndicator.Visibility = Visibility.Visible;
-        //}
-
-        //public void Application_NotBusy(string busyMessage)
-        //{
-        //    gridBusyIndicator.Visibility = Visibility.Collapsed;
-        //}
-
-
-
+           
 
 
     }

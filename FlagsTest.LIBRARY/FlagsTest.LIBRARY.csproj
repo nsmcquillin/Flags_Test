@@ -88,6 +88,8 @@
     <Compile Include="Models\Movies\MovieRuntime.cs" />
     <Compile Include="Models\Movies\MovieTitle.cs" />
     <Compile Include="Models\Spoonacular\Ingredient.cs" />
+    <Compile Include="Models\Spoonacular\RecipeEquipment.cs" />
+    <Compile Include="Models\Spoonacular\RecipeInstruction.cs" />
     <Compile Include="Models\Spoonacular\RecipeMethod.cs" />
     <Compile Include="Models\Spoonacular\Recipe.cs" />
     <Compile Include="Models\Spoonacular\RecipeMethodStep.cs" />

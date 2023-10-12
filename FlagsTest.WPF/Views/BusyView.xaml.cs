@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FlagsTest.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for BusyIndicator.xaml
+    /// Interaction logic for BusyView.xaml
     /// </summary>
-    public partial class BusyIndicator : UserControl
+    public partial class BusyView : UserControl
     {
-        public BusyIndicator()
+        public BusyView()
         {
             InitializeComponent();
         }

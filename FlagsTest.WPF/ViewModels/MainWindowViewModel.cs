@@ -14,6 +14,25 @@ namespace FlagsTest.WPF.ViewModels
     {
         public UserControl CurrentContent { get; set; }
 
+        private bool _appBusy;
+        public bool AppBusy
+        {
+            get { return _appBusy; }
+            set
+            {
+                _appBusy = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool _appNotBusy;
+        public bool AppNotBusy
+        {
+            get { return !_appNotBusy; }
+           
+        }
+
+
         private DateTime _currentDateTime;
         public DateTime CurrentDateTime
         {
@@ -26,9 +45,9 @@ namespace FlagsTest.WPF.ViewModels
         }
 
         public MainWindowViewModel() {
-
+  
             CurrentContent = new MoviesView();
-            //CurrentContent = new SpoonacularView();
+            // CurrentContent = new SpoonacularView();
             //CurrentContent = new TheRundownView();
 
             _currentDateTime = DateTime.Now;
@@ -38,11 +57,13 @@ namespace FlagsTest.WPF.ViewModels
             timer.Start();
         }
 
+
+
         void timer_Tick(object sender, EventArgs e)
         {
             CurrentDateTime = DateTime.Now;
         }
 
-
+        
     }
 }

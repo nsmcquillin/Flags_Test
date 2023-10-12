@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:FlagsTest.WPF.Converters"
+                    xmlns:myCustomControls="clr-namespace:FlagsTest.WPF.CustomControls">
 
     <!--====================================BORDER STYLES==================================-->
 
@@ -338,10 +340,15 @@
 
     <!--====================================BUSY INDICATOR==================================-->
 
+    
     <Style x:Key="GridMainWindowPopUp"  TargetType="Grid">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment"   Value="Stretch" />
-        <Setter Property="Background" Value="#333264C8"/>
+         <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
         <!--<Setter Property="Margin" Value="5"/>-->
     </Style>
 

@@ -66,6 +66,14 @@ namespace FlagsTest.WPF.ViewModels
             }
         }
 
+        private List<RecipeMethodStep> _selectedRecipeInstructions;
+        public  List<RecipeMethodStep> SelectedRecipeInstructions
+        {
+            get { 
+                return _selectedRecipe.Instructions[0].Steps;
+            }            
+        }
+
         private int _selectedRecipeId;
         public int SelectedRecipeId
         {
@@ -79,8 +87,8 @@ namespace FlagsTest.WPF.ViewModels
 
         public ICommand SearchRecipesCommand {  get; }
 
-        public ICommand GetRecipeCommand { get; }
+        public ICommand GetRecipeCommand { get; }       
 
-
+        
     }
 }

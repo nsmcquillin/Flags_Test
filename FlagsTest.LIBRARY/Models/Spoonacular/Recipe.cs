@@ -10,7 +10,7 @@ namespace FlagsTest.LIBRARY.Models.Spoonacular
     {
         public Recipe()
         {
-            Method = new RecipeMethod();
+            
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace FlagsTest.LIBRARY.Models.Spoonacular
         public string Image { get; set; }
         public string ImageType { get; set; }
         public List<Ingredient> Ingredients { get; set;}
-        public RecipeMethod Method { get; set; }
+        public List<RecipeInstruction> Instructions { get; set; }
     }
 }

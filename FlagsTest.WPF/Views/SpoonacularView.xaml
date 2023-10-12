@@ -56,13 +56,13 @@
 
 
         <!--main content-->
-        <Grid Grid.Column="1" Background="#FFF6F6F6" >
+        <Grid Grid.Column="1" Background="#FFB6BBC1" >
             <TabControl>
                 <TabControl.Items>
                     <TabItem Header="Ingredients" FontSize="30" >
                         <TabItem.Content>
                             <Grid>
-                                <ListBox ItemsSource="{Binding ElementName=lstRecipes, Path=SelectedItem.Ingredients}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox ItemsSource="{Binding SelectedRecipe.Ingredients}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock  Text="{Binding Name}" Style="{StaticResource TextBlockH3}" Foreground="Black" Width="300" TextWrapping="WrapWithOverflow"/>
@@ -81,15 +81,18 @@
                     </TabItem>
                     <TabItem Header="Method" FontSize="30">
                         <Grid>
-
-                            <ListBox ItemsSource="{Binding ElementName=lstRecipes, Path=SelectedItem.Method.Steps}">
-                                <ListBox.ItemTemplate>
+                            <ListView ItemsSource="{Binding SelectedRecipe.SelectedRecipeInstructions}">
+                                <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock  Text="{Binding Step}" Style="{StaticResource TextBlockH3}" Foreground="Black" Width="300" TextWrapping="WrapWithOverflow"/>
+                                        <Grid>
+                                            <TextBlock Style="{StaticResource TextBlockH2}" Text="{Binding Number, StringFormat=Step {0}:}"/>
+                                            <TextBlock Style="{StaticResource TextBlockGeneric}" Text="{Binding Step}" TextWrapping="Wrap"/>
+                                        </Grid>
                                     </DataTemplate>
-                                </ListBox.ItemTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                            </ListBox>
+                            
                         </Grid>
                     </TabItem>
                 </TabControl.Items>

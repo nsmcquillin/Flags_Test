@@ -15,6 +15,7 @@ namespace FlagsTest.LIBRARY.APIHelpers
     {
 
         private static string _apiKey = "d7ad1db3c1mshc13814405dba3dcp1f7fc4jsn3f46ff91e614";
+        
 
         public static async Task<List<Movie>> GetMovies(string searchCriteria)
         {
@@ -22,6 +23,7 @@ namespace FlagsTest.LIBRARY.APIHelpers
 
             var client = new RestClient(url);
             var request = new RestRequest(url, Method.Get);
+
             request.AddHeader("X-RapidAPI-Key", _apiKey);
             request.AddHeader("X-RapidAPI-Host", "moviesdatabase.p.rapidapi.com");
 

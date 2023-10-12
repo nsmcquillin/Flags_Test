@@ -1,4 +1,5 @@
-﻿using FlagsTest.LIBRARY.Models.Spoonacular;
+﻿using FlagsTest.LIBRARY.Models.Movies;
+using FlagsTest.LIBRARY.Models.Spoonacular;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -17,21 +18,34 @@ namespace FlagsTest.LIBRARY.APIHelpers
 
         public static async Task<List<Recipe>> GetRecipes(string searchCriteria, int numberOfRecords)
         {
+            List<Recipe> recipeList;
             var url = "https://api.apilayer.com/spoonacular/recipes/complexSearch";
-
+                    
             var client = new RestClient(url);
             var request = new RestRequest(url, Method.Get);
             request.AddHeader("apikey", _apiKey);
 
+            //request.Parameters.AddParameter(Parameter.CreateParameter("method", "recipe.search.v3", ParameterType.QueryString));
             request.Parameters.AddParameter(Parameter.CreateParameter("query", searchCriteria, ParameterType.QueryString));
 
             RestResponse response = await client.ExecuteAsync(request);
 
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
-            List<Recipe> recipeList = JsonConvert.DeserializeObject<List<Recipe>>(jsonResponse["results"].ToString());
+            switch (response.StatusCode)
+            {
+                case System.Net.HttpStatusCode.OK:
+                    JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+                    recipeList = JsonConvert.DeserializeObject<List<Recipe>>(jsonResponse["results"].ToString());
+                   
+                    break;
+                default:
+                    recipeList=new List<Recipe>();
+                    break;
+
+            }
 
 
             return recipeList;
+
 
 
         }
@@ -48,13 +62,20 @@ namespace FlagsTest.LIBRARY.APIHelpers
 
             RestResponse response = await client.ExecuteAsync(request);
 
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
-            recipe.Ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(jsonResponse["extendedIngredients"].ToString());
-            recipe.Method = JsonConvert.DeserializeObject<RecipeMethod>(jsonResponse["analyzedInstructions"].ToString());
+            switch (response.StatusCode)
+            {
+                case System.Net.HttpStatusCode.OK:
+                    JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+                    recipe.Ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(jsonResponse["extendedIngredients"].ToString());
+                    recipe.Instructions = JsonConvert.DeserializeObject<List<RecipeInstruction>>(jsonResponse["analyzedInstructions"].ToString());
 
-       
-         
+                    break;
+                default:
+                    
+                    break;
 
+            }
+            
             return recipe;
 
         }

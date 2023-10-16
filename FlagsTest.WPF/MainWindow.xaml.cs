@@ -1,5 +1,6 @@
 ﻿using FlagsTest.LIBRARY.APIHelpers;
 using FlagsTest.WPF.CustomControls;
+using FlagsTest.WPF.ViewModels;
 using FlagsTest.WPF.Views;
 using System;
 using System.Collections.Generic;
@@ -27,17 +28,13 @@ namespace FlagsTest.WPF
         public MainWindow()
         {
             InitializeComponent();
+            //DataContext = new MainWindowViewModel();
         }
 
-        private UserControl _currentView;
-        public UserControl CurrentView
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            get { return _currentView; }
-            set { _currentView = value; }
+            this.DataContext = new MainWindowViewModel();
+            ((MainWindowViewModel)this.DataContext).CurrentContent = new MoviesView();
         }
-
-           
-
-
     }
 }

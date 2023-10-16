@@ -25,7 +25,7 @@
             Height="250"
             StrokeThickness="10"
             RenderTransformOrigin="0.5 0.5"
-            Stroke="White" StrokeDashArray="70">
+            Stroke="Black" StrokeDashArray="70">
             <Ellipse.RenderTransform>
                 <RotateTransform x:Name="Rotation" Angle="0"/>
             </Ellipse.RenderTransform>
@@ -42,7 +42,7 @@
             </Ellipse.Triggers>
         </Ellipse>
 
-        <TextBlock Style="{StaticResource TextBlockH2}" Text="PLEASE WAIT..." HorizontalAlignment="Center"/>
+        <TextBlock Style="{StaticResource TextBlockH2}" Foreground="Black" Text="PLEASE WAIT..." HorizontalAlignment="Center"/>
 
     </Grid>
 </UserControl>

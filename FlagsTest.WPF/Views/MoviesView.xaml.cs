@@ -26,7 +26,7 @@ namespace FlagsTest.WPF.Views
             public MoviesView()
             {
                 InitializeComponent();
-                DataContext = new MoviesViewModel();
+                this.DataContext = new MoviesViewModel((MainWindowViewModel)Application.Current.MainWindow.DataContext);
 
             }
 

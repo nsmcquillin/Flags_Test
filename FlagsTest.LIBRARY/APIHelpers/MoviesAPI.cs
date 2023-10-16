@@ -27,6 +27,8 @@ namespace FlagsTest.LIBRARY.APIHelpers
             request.AddHeader("X-RapidAPI-Key", _apiKey);
             request.AddHeader("X-RapidAPI-Host", "moviesdatabase.p.rapidapi.com");
 
+            System.Threading.Thread.Sleep(5000);
+
             RestResponse response = await client.ExecuteAsync(request);
             JObject jsonResponse = null;
             List<Movie> movieList = new List<Movie>();

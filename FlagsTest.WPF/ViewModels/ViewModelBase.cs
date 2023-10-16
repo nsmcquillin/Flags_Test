@@ -10,6 +10,8 @@ namespace FlagsTest.WPF.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        public MainWindowViewModel MainWindowVM { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

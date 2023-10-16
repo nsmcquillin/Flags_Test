@@ -13,8 +13,9 @@ namespace FlagsTest.WPF.ViewModels
 {
     public class MoviesViewModel : ViewModelBase
     {
-        public MoviesViewModel()
+        public MoviesViewModel(MainWindowViewModel vmMainWindow)
         {
+            MainWindowVM = vmMainWindow;
             _title = "Movie Search";
             HasNoItems = true;
             HasItems = false;

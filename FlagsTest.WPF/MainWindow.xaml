@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlagsTest.WPF.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
 
     <Window.Resources>
         <BooleanToVisibilityConverter  x:Key="b2v"/>
@@ -29,16 +29,41 @@
         </Grid>
 
         <!--body-->
-        <Grid Grid.Row="1">
-            
+        <Grid Grid.Row="1" >
+            <Grid.Style>                
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppBusy}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding AppBusy}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-                <views:BusyView Visibility="{Binding AppBusy, ConverterParameter={StaticResource b2v}}" />
+                <views:BusyView  />
 
+        </Grid>
 
+        <Grid Grid.Row="1" >
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppBusy}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding AppBusy}" Value="False">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <ContentControl Name="ccCurrentView" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentContent}" >
 
-
-            <ContentControl Name="ccCurrentView" Style="{StaticResource ContentControlMain}" Content="{Binding CurrentContent}" Visibility="{Binding AppNotBusy, ConverterParameter={StaticResource b2v}}">
-                
 
             </ContentControl>
         </Grid>

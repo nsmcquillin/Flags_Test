@@ -17,7 +17,6 @@ namespace FlagsTest.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow();
-            MainWindow.DataContext = new MainWindowViewModel();
             MainWindow.Show();
         }
     }

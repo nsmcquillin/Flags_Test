@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -46,7 +47,7 @@ namespace FlagsTest.WPF.ViewModels
 
         public MainWindowViewModel() {
   
-            CurrentContent = new MoviesView();
+            //CurrentContent = new MoviesView();
             // CurrentContent = new SpoonacularView();
             //CurrentContent = new TheRundownView();
 
@@ -64,6 +65,20 @@ namespace FlagsTest.WPF.ViewModels
             CurrentDateTime = DateTime.Now;
         }
 
-        
+        public void SetAppBusy()
+        {
+            AppBusy = true;
+
+            var a = Application.Current.MainWindow.DataContext;
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => { AppBusy = true; }));
+        }
+
+        public void SetAppNotBusy()
+        {
+            AppBusy = false;
+            //Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => { AppBusy = false; }));
+        }
+
+
     }
 }
